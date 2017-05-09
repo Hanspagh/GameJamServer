@@ -7,7 +7,7 @@ router.get('/', function (req, res) {
   var response = listOfNewMonsters.map(function(elem) {
     return elem.serialize();
   });
-  //listOfNewMonsters = []
+  listOfNewMonsters = []
   response = response.reduce(function(elem, res) {
     return res + ';' + elem
   })
