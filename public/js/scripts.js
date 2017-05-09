@@ -3,10 +3,10 @@
  */
 
 var prices = {
-    1: 10,
-    2: 20,
-    3: 40,
-    4: 80
+    1: 5,
+    2: 10,
+    3: 20,
+    4: 40
 }
 
 var coins = 20;
@@ -14,6 +14,7 @@ var mazeSize = 10;
 var selectedX = null;
 var selectedY = null;
 var timeout = 1000
+var income = 0
 var mazeData = {list: []}
 
 
@@ -103,7 +104,14 @@ function incrementCoins() {
 function spendCoins(monsterId) {
     var price = prices[monsterId];
     coins -= price;
-    timeout -= (timeout * 10 / 100)
+    income++
+    
+    timeout = 1000 - 700 * Math.log10(income)
+    if(timeout < 100) {
+      timeout = 100
+    }
+    console.log(income);
+    console.log(timeout);
     updateUI();
 }
 
@@ -181,7 +189,6 @@ function mazeRedraw(data) {
   for(var x = 0; x < mazeSize; x++) {
       for(var y = 0; y < mazeSize; y++) {
           var cell = data.list[x + y * 10]
-          console.log(cell);
           var xPos = x * squareSize
           var yPos = (9 - y) * squareSize 
           
