@@ -29,6 +29,10 @@ function setupUI() {
             return false;
         }
 
+        if (!hasSufficientCoins()) {
+            // Not enough coins
+            return false;
+        }
 
         $.ajax({
             url     : $(this).attr('action'),
@@ -68,6 +72,8 @@ function setupUI() {
 
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
+
+        $("form").submit();
     })
 
     drawMaze();
@@ -98,13 +104,20 @@ function spendCoins(monsterId) {
     updateUI();
 }
 
+function hasSufficientCoins() {
+    var id = getSelectedMonsterId()
+    var monsterPrice = prices[id];
+
+    return coins >= monsterPrice;
+}
+
 function updateUI() {
     $("#coins").html(coins);
 
     var id = getSelectedMonsterId()
     var monsterPrice = prices[id];
 
-    var canBuyMonster = coins >= monsterPrice;
+    var canBuyMonster = hasSufficientCoins();
     $("#submitButton").prop('disabled', !canBuyMonster);
 }
 
