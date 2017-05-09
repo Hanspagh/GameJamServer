@@ -103,7 +103,7 @@ function incrementCoins() {
 function spendCoins(monsterId) {
     var price = prices[monsterId];
     coins -= price;
-    timeout -= 50
+    timeout -= (timeout * 10 / 100)
     updateUI();
 }
 
