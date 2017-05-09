@@ -9,7 +9,7 @@ var prices = {
     4: 80
 }
 
-var coins = 100;
+var coins = 20;
 var mazeSize = 10;
 var selectedX = null;
 var selectedY = null;
@@ -103,7 +103,7 @@ function incrementCoins() {
 function spendCoins(monsterId) {
     var price = prices[monsterId];
     coins -= price;
-
+    timeout -= 50
     updateUI();
 }
 
