@@ -51,6 +51,7 @@ function setupUI() {
 
     // Setup canvas
     var c = document.getElementById("canvas");
+    c.onselectstart = function () { return false; };
     var size = $("#canvas").css("width").replace("px", "");
     c.width = size;
     c.height = size;
