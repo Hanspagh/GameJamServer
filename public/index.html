@@ -27,28 +27,52 @@
 <body>
 
 <div class="container">
-    <div class="row" style="margin-top: 50px">
-        <div class="col-md-6">
+    <div class="row" style="margin-top: 10px">
+        <span class="col-md-6">
             <iframe src="https://player.twitch.tv/?channel=shakeron" frameborder="0" allowfullscreen="true" scrolling="no" height="512" width="512"></iframe>
-        </div>
-
-        <div class="col-md-6">
             <div>
-                <h3>Coins</h3>
+                <h3>Coins earned:</h3>
                 <span id="coins">0</span> <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
-            <div style="margin-top: 100px">
+        </span>
+
+        <span class="col-md-6">
+            <canvas id="canvas" style="width: 512px; height: 512px;"></canvas>
+
+            <div style="margin-top: 10px">
+                <input type="hidden" name="monster" value="0"/>
+             <label>
+                 <input type="radio" name="monster" value="1"/>
+                 <img src="images/enemy_easy.png">
+                 <div>10 <i class="fa fa-usd" aria-hidden="true"></i></div>
+             </label>
+             <label>
+                 <input type="radio" name="monster" value="2"/>
+                 <img src="images/enemy_mid.png">
+                 <div>20 <i class="fa fa-usd" aria-hidden="true"></i></div>
+             </label>
+             <label>
+                 <input type="radio" name="monster" value="3"/>
+                 <img src="images/enemy_midhard.png">
+                 <div>40 <i class="fa fa-usd" aria-hidden="true"></i></div>
+             </label>
+             <label>
+                 <input type="radio" name="monster" value="4"/>
+                 <img src="images/enemy_hard.png">
+                 <div>80 <i class="fa fa-usd" aria-hidden="true"></i></div>
+             </label>
+            </div>
+
+            <div style="margin-top: 10px">
                 <form action="/api/monsters" method="POST">
-                    <input name="id" type="number" step="1" placeholder="Monster Id">
-                    <input name="x" type="number" step="1" placeholder="x coordinate">
-                    <input name="y" type="number" step="1" placeholder="y coordinate"><br><br>
+                    <input name="x" type="hidden" step="1">
+                    <input name="y" type="hidden" step="1">
                     <p>
                     <input id="submitButton" disabled type="submit" value="Insert monster!"><br>
                     </p>
-                    <p>It costs <span id="monsterPrice"></span> <i class="fa fa-usd" aria-hidden="true"></i></p>
                 </form>
             </div>
-        </div>
+        </span>
     </div>
 </div>
 
