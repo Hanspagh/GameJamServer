@@ -9,10 +9,11 @@ var prices = {
     4: 80
 }
 
-var coins = 0;
+var coins = 100;
 var mazeSize = 10;
 var selectedX = null;
 var selectedY = null;
+var timeout = 1000
 var mazeData = {list: []}
 
 
@@ -88,15 +89,15 @@ function getSelectedMonsterId() {
 }
 
 // set timeout
-var tid = setTimeout(incrementCoins, 1000);
+var tid = setTimeout(incrementCoins, timeout);
 
 function incrementCoins() {
     // increment counter
     coins += 1;
 
     updateUI();
-
-    tid = setTimeout(incrementCoins, 1000); // repeat myself
+    
+    tid = setTimeout(incrementCoins, timeout); // repeat myself
 }
 
 function spendCoins(monsterId) {
