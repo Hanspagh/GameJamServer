@@ -2,25 +2,61 @@
  * Created by Anders on 09/05/17.
  */
 
-var counter = 0;
+var monsterPrice = 5;
+var coins = 0;
 
-updateUI();
+
+$(document).ready(function() {
+    setupUI()
+});
+
+function setupUI() {
+    $("#monsterPrice").html(monsterPrice);
+
+    $(document).on('submit', 'form', function() {
+        $.ajax({
+            url     : $(this).attr('action'),
+            type    : $(this).attr('method'),
+            dataType: 'json',
+            data    : $(this).serialize(),
+            success : function(data) {
+                alert('Submitted');
+                spendCoins();
+            },
+            error   : function(xhr, err) {
+                alert('Error');
+                spendCoins();
+            }
+        });
+        return false;
+    });
+
+    updateUI();
+}
 
 // set timeout
-var tid = setTimeout(incrementCounter, 1000);
+var tid = setTimeout(incrementCoins, 1000);
 
-function incrementCounter() {
+function incrementCoins() {
     // increment counter
-    counter += 1;
+    coins += 1;
 
     updateUI();
 
-    tid = setTimeout(incrementCounter, 1000); // repeat myself
+    tid = setTimeout(incrementCoins, 1000); // repeat myself
 }
 
+function spendCoins() {
+    coins = 0;
+
+    updateUI();
+}
 
 function updateUI() {
-    $("#counter").html(counter);
+    $("#coins").html(coins);
+
+    var canBuyMonster = coins >= monsterPrice;
+    $("#submitButton").prop('disabled', !canBuyMonster);
 }
 
 function abortTimer() { // to be called when you want to stop the timer
