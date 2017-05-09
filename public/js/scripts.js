@@ -13,6 +13,7 @@ var coins = 0;
 var mazeSize = 10;
 var selectedX = null;
 var selectedY = null;
+var mazeData = {list: []}
 
 
 $(document).ready(function() {
@@ -64,10 +65,10 @@ function setupUI() {
         console.log(selectedX, selectedY)
 
         ctx.clearRect(0,0, c.width, c.height);
-        drawMaze();
+        mazeRedraw(mazeData);
 
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
+        ctx.fillRect(x * squareSize + 3, y * squareSize + 3, squareSize-6, squareSize-6);
     })
 
     drawMaze();
@@ -115,17 +116,63 @@ function abortTimer() { // to be called when you want to stop the timer
 
 
 function drawMaze() {
-    // Setup canvas
-    var c = document.getElementById("canvas");
-    var squareSize = c.width / mazeSize;
-    var ctx = c.getContext("2d");
-    ctx.beginPath();
-
-    for(var x = 0; x < mazeSize * squareSize; x += squareSize) {
-        for(var y = 0; y < mazeSize * squareSize; y += squareSize) {
-            ctx.rect(x, y, squareSize, squareSize);
+    $.ajax({
+        url     : '/api/map',
+        type    : 'GET',
+        dataType: 'json',
+        data    : {},
+        success : function(data) {
+          mazeRedraw(data)
+        },
+        error   : function(xhr, err) {
+            alert("errro")
         }
-    }
+    });
+    return false;
+  
+    // Setup canvas
+  
+}
 
-    ctx.stroke()
+function mazeRedraw(data) {
+  mazeData = data
+  var c = document.getElementById("canvas");
+  var squareSize = c.width / mazeSize;
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+
+  for(var x = 0; x < mazeSize; x++) {
+      for(var y = 0; y < mazeSize; y++) {
+          var cell = data.list[x + y * 10]
+          console.log(cell);
+          var xPos = x * squareSize
+          var yPos = (9 - y) * squareSize 
+          
+          if(cell.w == 1) {
+            ctx.moveTo(xPos, yPos);
+            ctx.lineTo(xPos, yPos + squareSize);
+            ctx.stroke()
+          }
+          if(cell.n == 1) {
+            ctx.moveTo(xPos, yPos);
+            ctx.lineTo(xPos + squareSize, yPos);
+            ctx.stroke()
+          }
+          if(cell.e == 1) {
+            ctx.moveTo(xPos + squareSize, yPos);
+            ctx.lineTo(xPos + squareSize, yPos + squareSize);
+            ctx.stroke()
+          }
+          if(cell.s == 1) {
+
+            ctx.moveTo(xPos, yPos + squareSize);
+            ctx.lineTo(xPos + squareSize, yPos + squareSize);
+            ctx.stroke()
+          }
+          
+          
+      }
+  }
+
+  ctx.stroke()
 }
