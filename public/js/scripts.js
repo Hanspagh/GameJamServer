@@ -2,7 +2,6 @@
  * Created by Anders on 09/05/17.
  */
 
-var monsterPrice = 5;
 var prices = {
     1: 10,
     2: 20,
@@ -21,8 +20,6 @@ $(document).ready(function() {
 });
 
 function setupUI() {
-    $("#monsterPrice").html(monsterPrice);
-
     // Bind requests to form
     $(document).on('submit', 'form', function() {
         var id = getSelectedMonsterId();
