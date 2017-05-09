@@ -59,8 +59,9 @@ function setupUI() {
         var x = Math.floor(e.offsetX / squareSize);
         var y = Math.floor(e.offsetY / squareSize);
 
-        selectedX = 10 - x;
-        selectedY = y;
+        selectedX = x;
+        selectedY = 9 - y;
+        console.log(selectedX, selectedY)
 
         ctx.clearRect(0,0, c.width, c.height);
         drawMaze();
