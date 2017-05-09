@@ -7,13 +7,14 @@ router.get('/', function (req, res) {
   var response = listOfNewMonsters.map(function(elem) {
     return elem.serialize();
   });
-  listOfNewMonsters = []
+  //listOfNewMonsters = []
   res.json(response)
 })
 
 router.post('/', function (req, res) {
-  var data = res.body  
+  var data = req.body  
   listOfNewMonsters.push(new Monster(data.id, data.x, data.y));
+  return res.status(200).json("nice");
 })
 
 module.exports = router
