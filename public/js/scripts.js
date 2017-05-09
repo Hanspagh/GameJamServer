@@ -80,7 +80,7 @@ function setupUI() {
     })
 
     drawMaze();
-
+    setHighScore() 
     updateUI();
 }
 
@@ -126,6 +126,28 @@ function updateUI() {
 
 function abortTimer() { // to be called when you want to stop the timer
     clearTimeout(tid);
+}
+
+function setHighScore() {
+  var listContainer = $('#list');
+  $.ajax({
+      url     : '/api/highscore/json',
+      type    : 'GET',
+      dataType: 'json',
+      data    : {},
+      success : function(data) {
+        data.forEach(function(elem) {
+          listContainer.prepend('<li> ' + elem.name + ':' + elem.score + '</li>');
+        })
+        
+      },
+      error   : function(xhr, err) {
+          alert("errro")
+      }
+  });
+  return false;
+  
+  
 }
 
 
