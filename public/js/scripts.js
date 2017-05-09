@@ -59,7 +59,7 @@ function setupUI() {
         var x = Math.floor(e.offsetX / squareSize);
         var y = Math.floor(e.offsetY / squareSize);
 
-        selectedX = x;
+        selectedX = 10 - x;
         selectedY = y;
 
         ctx.clearRect(0,0, c.width, c.height);
