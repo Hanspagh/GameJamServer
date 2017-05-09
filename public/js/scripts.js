@@ -30,6 +30,10 @@ function setupUI() {
             return false;
         }
 
+        if (!hasSufficientCoins()) {
+            // Not enough coins
+            return false;
+        }
 
         $.ajax({
             url     : $(this).attr('action'),
@@ -48,6 +52,7 @@ function setupUI() {
 
     // Setup canvas
     var c = document.getElementById("canvas");
+    c.onselectstart = function () { return false; };
     var size = $("#canvas").css("width").replace("px", "");
     c.width = size;
     c.height = size;
@@ -68,7 +73,9 @@ function setupUI() {
         mazeRedraw(mazeData);
 
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect(x * squareSize + 3, y * squareSize + 3, squareSize-6, squareSize-6);
+        ctx.fillRect(x * squareSize + 3, y * squareSize + 3, squareSize-6, squareSize-6);    
+
+        $("form").submit();
     })
 
     drawMaze();
@@ -99,13 +106,20 @@ function spendCoins(monsterId) {
     updateUI();
 }
 
+function hasSufficientCoins() {
+    var id = getSelectedMonsterId()
+    var monsterPrice = prices[id];
+
+    return coins >= monsterPrice;
+}
+
 function updateUI() {
     $("#coins").html(coins);
 
     var id = getSelectedMonsterId()
     var monsterPrice = prices[id];
 
-    var canBuyMonster = coins >= monsterPrice;
+    var canBuyMonster = hasSufficientCoins();
     $("#submitButton").prop('disabled', !canBuyMonster);
 }
 
