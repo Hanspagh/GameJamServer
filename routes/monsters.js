@@ -8,6 +8,9 @@ router.get('/', function (req, res) {
     return elem.serialize();
   });
   listOfNewMonsters = []
+  if(response.length == 0) {
+    return res.json("")
+  }
   response = response.reduce(function(elem, res) {
     return res + ';' + elem
   })
