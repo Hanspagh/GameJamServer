@@ -1,23 +1,39 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | 9Maj2017Jam</title>
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <script src="TemplateData/UnityProgress.js"></script>
+    <title>INSERT SOMETHING HERE</title>
 
-    <script src="js/jquery-3.2.1.min.js" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <script src="js/scripts.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
-  </head>
-  <body class="template">
-    <div class="template-wrap clear">
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
-      <br>
-      <div class="logo"></div>
-      <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
-      <div class="title">9Maj2017Jam</div>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-4">
+        <iframe src="https://player.twitch.tv/?channel=shakeron" frameborder="0" allowfullscreen="true" scrolling="no" height="512" width="512"></iframe>
+        <div class="timer">
+            <span id="counter"></span> <i class="fa fa-usd" aria-hidden="true"></i>
+        </div>
+        
+      
     </div>
     <script type='text/javascript'>
   var Module = {
@@ -34,12 +50,6 @@
 </script>
 <script src="Release/UnityLoader.js"></script>
 
-  <div class="timer">
-      Hej
-  </div>
-  
-  <iframe src="https://player.twitch.tv/?channel=shakeron" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-
-  </body>
+</body>
 
 </html>
