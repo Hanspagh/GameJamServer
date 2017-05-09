@@ -1,7 +1,7 @@
 var express = require('express')
 var Monster = require('../data/monster')
 var router = express.Router()
-var listOfNewMonsters = [new Monster(1,10,10), new Monster(2,20,20)];
+var listOfNewMonsters = [];
 
 router.get('/', function (req, res) {
   var response = listOfNewMonsters.map(function(elem) {
