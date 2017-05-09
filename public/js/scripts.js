@@ -20,11 +20,9 @@ function setupUI() {
             dataType: 'json',
             data    : $(this).serialize(),
             success : function(data) {
-                alert('Submitted');
                 spendCoins();
             },
             error   : function(xhr, err) {
-                alert('Error');
                 spendCoins();
             }
         });
@@ -47,7 +45,7 @@ function incrementCoins() {
 }
 
 function spendCoins() {
-    coins = 0;
+    coins -= monsterPrice;
 
     updateUI();
 }
