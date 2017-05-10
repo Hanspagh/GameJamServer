@@ -4,11 +4,13 @@ var monsters = require('./routes/monsters')
 var map = require('./routes/map')
 var highscore = require('./routes/highscore')
 var bodyParser = require('body-parser')
+var cors = require('cors')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+app.use(cors())
 app.use(bodyParser.text())
 app.use(bodyParser.raw())
 app.use('/', express.static(__dirname + '/public'));
